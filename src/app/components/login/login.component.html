@@ -1,1 +1,25 @@
-<p>login works!</p>
+<div class="container">
+    <div class="card mx-auto mt-5" style="max-width: 400px; border-radius: 15px;">
+        <div class="card-body p-5">
+            <h2 class="card-title text-center mb-3">Sign in</h2>
+            <form [formGroup]="loginForm">
+                <div class="form-group" [ngClass]="{'has-danger': wrongLoginData}">
+                    <label for="username">Username:</label>
+                    <input type="text" class="form-control" formControlName="username" id="username" required
+                        (focus)="resetErrorState()">
+                </div>
+                <div *ngIf="emptyUsername" class="text-danger text-center small">Provide username</div>
+                <div class="form-group" [ngClass]="{'has-danger': wrongLoginData}">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" formControlName="password" id="password" required
+                        (focus)="resetErrorState()">
+                </div>
+                <div *ngIf="emptyPassword" class="text-danger text-center small">Provide password</div>
+                <div class="d-flex justify-content-center mt-4">
+                    <button type="button" class="btn btn-primary" (click)="onSubmit()">Sign in</button>
+                </div>
+            </form>
+            <div *ngIf="wrongLoginData" class="text-danger mt-4 text-center small">{{errorMessage}}</div>
+        </div>
+    </div>
+</div>
